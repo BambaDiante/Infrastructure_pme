@@ -22,6 +22,7 @@ permissions standards et ACL, délégation sudo.
 ```
 
 ## Structure du dépôt
+```
 scripts/
 ├── create_users.sh    # Création des groupes et utilisateurs
 ├── setup_structure.sh # Création de l'arborescence /opt/rnd/ + permissions
@@ -29,6 +30,8 @@ scripts/
 configs/
 ├── sudoers_rnd         # Règles de délégation sudo (à copier dans /etc/sudoers.d/)
 └── acl_backup.txt       # Sauvegarde des ACL générée par getfacl -R
+
+```
 ## Ordre d'exécution
 
 Exécutez les scripts dans cet ordre précis, en tant que root :
