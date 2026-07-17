@@ -41,6 +41,8 @@ sudo ./scripts/create_users.sh
 
 # 2. Créer l'arborescence et appliquer les permissions
 sudo ./scripts/setup_structure.sh
+# → crée l'arborescence /opt/rnd/, applique les permissions standards,
+#   les bits spéciaux (SGID/sticky bit) et les ACL
 
 # 3. Copier et activer les règles sudo
 sudo cp configs/sudoers_rnd /etc/sudoers.d/rnd-delegation

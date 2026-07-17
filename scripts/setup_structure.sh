@@ -37,3 +37,33 @@ chmod 1777 "$BASE"/logs
 
 echo "=== Arborescence finale ==="
 ls -laR "$BASE"
+
+echo "=== Application des ACL ==="
+
+
+# Les stagiaires ont un accès lecture seule à docs/techniques
+setfacl -m u:ali:r-x "$BASE"/docs/techniques
+setfacl -m u:binta:r-x "$BASE"/docs/techniques
+
+# ci_runner a un accès complet à outils/scripts
+setfacl -m u:ci_runner:rwx "$BASE"/outils/scripts
+
+# Le chef de projet (Diallo) a un accès total récursif à tout /opt/rnd
+setfacl -R -m u:diallo:rwx "$BASE"
+
+# --- Question 4.2 : ACL par défaut (héritage) sur projets/actifs ---
+
+# Tout nouveau fichier créé sera accessible en rwx par les ingénieurs
+setfacl -d -m g:ingenieurs:rwx "$BASE"/projets/actifs
+
+# Tout nouveau fichier créé sera accessible en rx par le chef de projet
+setfacl -d -m u:diallo:rx "$BASE"/projets/actifs
+
+echo "=== Vérification des ACL appliquées ==="
+
+getfacl "$BASE"/docs/techniques
+getfacl "$BASE"/outils/scripts
+getfacl "$BASE"/projets/actifs
+
+echo "=== Arborescence finale ==="
+ls -laR "$BASE"
