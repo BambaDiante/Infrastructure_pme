@@ -58,7 +58,10 @@ sudo visudo -c -f /etc/sudoers.d/rnd-delegation
 
 # 4 . Verification des règles sudo
 su - fatou -c "sudo -l"
+#le mot de passe est :Ingenieur2026!
 su - ali -c "sudo -l"
+#le mot de passe est :Stagiare2026!
+
 
 
 ```
