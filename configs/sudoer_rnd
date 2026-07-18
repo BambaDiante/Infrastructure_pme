@@ -1,0 +1,12 @@
+# /etc/sudoers.d/rnd-delegation
+# Règles de délégation sudo - Département R&D Innovation
+# GlobalCorp - 2025-2026
+
+# Règle 1 : Les ingénieurs peuvent redémarrer apache2 sans mot de passe
+%ingenieurs ALL=(root) NOPASSWD: /usr/sbin/systemctl restart apache2
+
+# Règle 2 : Le chef de projet a un accès total en tant que root
+diallo ALL=(ALL:ALL) ALL
+
+# Règle 3 : ci_runner peut faire un git pull dans /opt/rnd/outils/
+ci_runner ALL=(root) NOPASSWD: /usr/bin/git -C /opt/rnd/outils/ pull
