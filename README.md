@@ -56,8 +56,11 @@ sudo chmod 440 /etc/sudoers.d/rnd-delegation
 sudo chown root:root /etc/sudoers.d/rnd-delegation
 sudo visudo -c -f /etc/sudoers.d/rnd-delegation
 
-# 4. Lancer l'audit pour vérifier l'ensemble de la configuration
-sudo ./scripts/audit_rnd.sh
+# 4 . Verification des règles sudo
+su - fatou -c "sudo -l"
+su - ali -c "sudo -l"
+
+
 ```
 
 ## Mots de passe temporaires
@@ -65,37 +68,8 @@ sudo ./scripts/audit_rnd.sh
 Tous les utilisateurs créés ont un mot de passe temporaire (voir `create_users.sh`).
 Ces mots de passe doivent être changés par les utilisateurs à leur première connexion.
 
-## Vérifications rapides
-
-```bash
-# Vérifier qu'un utilisateur existe avec les bons groupes
-id fatou
-
-# Vérifier les ACL d'un répertoire
-getfacl /opt/rnd/docs/techniques
-
-# Vérifier les droits sudo d'un ingénieur
-su - fatou -c "sudo -l"
-
-# Vérifier qu'un stagiaire n'a aucun droit sudo
-su - ali -c "sudo -l"
-
-# Vérifier les droits sudo d'un utilisateur (vue admin)
-sudo -l -U mamadou
-```
-
-## Sauvegarde des ACL
-
-La sauvegarde des ACL de `/opt/rnd/` a été générée avec la commande suivante,
-et se trouve dans `configs/acl_backup.txt` :
-
-```bash
-getfacl -R /opt/rnd > configs/acl_backup.txt
-```
 
 
 ## Documentation complémentaire
 
-Le guide d'administration destiné au successeur (procédure d'ajout d'un
-ingénieur, sauvegarde/restauration des ACL, commandes utiles au quotidien)
-se trouve en annexe du `rapport.pdf`.
+Le guide d'administration se trouve en annexe du `rapport.pdf`.
